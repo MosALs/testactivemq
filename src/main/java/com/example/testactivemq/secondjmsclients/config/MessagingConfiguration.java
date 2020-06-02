@@ -1,12 +1,15 @@
 package com.example.testactivemq.secondjmsclients.config;
 
 
+import com.example.testactivemq.secondjmsclients.AsynchronousConsumer2;
 import com.example.testactivemq.secondjmsclients.consumer2;
 import org.apache.activemq.spring.ActiveMQConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.listener.DefaultMessageListenerContainer;
+import org.springframework.jms.listener.MessageListenerContainer;
 import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.jms.support.converter.SimpleMessageConverter;
 
@@ -20,7 +23,7 @@ public class MessagingConfiguration {
 
 
     @Autowired
-    consumer2 consumer2;
+    AsynchronousConsumer2 asynchronousConsumer;
 
     @Bean
     public ConnectionFactory connectionFactory()
@@ -47,5 +50,14 @@ public class MessagingConfiguration {
     MessageConverter converter()
     {
         return new SimpleMessageConverter();
+    }
+
+    @Bean
+    public MessageListenerContainer getContainer(){
+        DefaultMessageListenerContainer container = new DefaultMessageListenerContainer();
+        container.setConnectionFactory(connectionFactory());
+        container.setDestinationName(MESSAGE_QUEUE);
+        container.setMessageListener(asynchronousConsumer);
+        return container;
     }
 }
