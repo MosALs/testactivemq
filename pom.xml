@@ -60,10 +60,21 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-all -->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.activemq</groupId>-->
+            <!--<artifactId>activemq-all</artifactId>-->
+            <!--<version>5.15.8</version>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jms</artifactId>
+            <!--<version>${springframework.version}</version>-->
+        </dependency>
         <dependency>
             <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-all</artifactId>
-            <version>5.15.8</version>
+            <artifactId>activemq-spring</artifactId>
+            <version>5.13.3</version>
         </dependency>
 
     </dependencies>

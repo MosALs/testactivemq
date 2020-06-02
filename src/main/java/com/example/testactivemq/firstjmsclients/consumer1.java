@@ -1,4 +1,4 @@
-package com.example.testactivemq.jms.producer1;
+package com.example.testactivemq.firstjmsclients;
 
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
